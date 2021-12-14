@@ -17,7 +17,7 @@
     <br>
     <table>
         <tr>
-            <button onclick="window.location.href = 'addNewPare'">Submit</button>
+            <button >Submit</button>
             <br>
             <br>
             <input type="button" value="Add" onclick="window.location.href = 'addNewPare'"/>

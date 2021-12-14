@@ -1,7 +1,5 @@
 package com.da.daCryptV2.entity;
 
-
-
 import javax.persistence.*;
 
 

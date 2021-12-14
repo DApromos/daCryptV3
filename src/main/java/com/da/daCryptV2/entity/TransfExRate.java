@@ -2,7 +2,6 @@ package com.da.daCryptV2.entity;
 
 import org.springframework.stereotype.Component;
 
-import javax.persistence.Entity;
 
 @Component
 public class TransfExRate {

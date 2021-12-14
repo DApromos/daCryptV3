@@ -25,7 +25,7 @@ public class RealtimeCurrencyExchangeRateServiceImplementation{
     @Autowired
     private RealtimeCurrencyExchangeRateDAO realtimeCurrencyExchangeRateDAO;
 
-//    @Override
+
     @Transactional
     public List<RealtimeCurrencyExchangeRate> getRealtimeCurrencyExchangeRate() {
         return realtimeCurrencyExchangeRateDAO.getRealtimeCurrencyExchangeRate();
