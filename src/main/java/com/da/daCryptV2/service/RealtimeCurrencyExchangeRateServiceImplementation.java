@@ -75,7 +75,6 @@ public class RealtimeCurrencyExchangeRateServiceImplementation{
 
             realtimeCurrencyExchangeRateDAO.saveRealtimeCurrencyExchangeRate(realtimeCurrencyExchangeRate);
 
-//            System.out.println(realtimeCurrencyExchangeRate);
 
 
         } catch (UnirestException e) {
