@@ -73,5 +73,21 @@ public class DigitalCurrencyMonthly {
     @Setter
     private BigDecimal marketCapUSD;
 
-
+    public DigitalCurrencyMonthly(String currencyCode, String currencyName, String marketCode, String marketName, String lastRefreshed,
+                                  String timeZone, LocalDate checkDate, double highestPriceInput, double highestPriceUSD,
+                                  double lowestPriceInput, double lowestPriceUSD, BigDecimal volume, BigDecimal marketCapUSD) {
+        this.currencyCode = currencyCode;
+        this.currencyName = currencyName;
+        this.marketCode = marketCode;
+        this.marketName = marketName;
+        this.lastRefreshed = lastRefreshed;
+        this.timeZone = timeZone;
+        this.checkDate = checkDate;
+        this.highestPriceInput = highestPriceInput;
+        this.highestPriceUSD = highestPriceUSD;
+        this.lowestPriceInput = lowestPriceInput;
+        this.lowestPriceUSD = lowestPriceUSD;
+        this.volume = volume;
+        this.marketCapUSD = marketCapUSD;
+    }
 }

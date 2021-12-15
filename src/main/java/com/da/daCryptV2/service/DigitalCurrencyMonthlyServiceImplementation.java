@@ -15,8 +15,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+
+import static java.time.temporal.TemporalAdjusters.lastDayOfMonth;
 
 @Service
 @ToString
@@ -72,14 +75,81 @@ public class DigitalCurrencyMonthlyServiceImplementation implements DigitalCurre
             String lastRefreshed = (String) digitalCurrencyObject2.get("6. Last Refreshed");
             String timeZone = (String) digitalCurrencyObject2.get("UTC");
 
+            JSONObject digitalCurrencyObject3 =
+                    (JSONObject) digitalCurrencyObject1.get("Time Series (Digital Currency Monthly)");
 
-            LocalDate checkDate;
-            double highestPriceInput;
-            double highestPriceUSD;
-            double lowestPriceInput;
-            double lowestPriceUSD;
-            BigDecimal volume;
-            BigDecimal marketCapUSD;
+            LocalDate checkDate = (LocalDate) digitalCurrencyObject3.get(LocalDate.now());
+            JSONObject digitalCurrencyObject4 = (JSONObject) digitalCurrencyObject3.get(LocalDate.now());
+
+            String highestPriceInputRaw = (String) digitalCurrencyObject4.get("2a. high " + getFromCurrency() + ")");
+            double highestPriceInput = Double.parseDouble(highestPriceInputRaw);
+
+            String highestPriceUSDRaw = (String) digitalCurrencyObject4.get("2b. high (USD)");
+            double highestPriceUSD = Double.parseDouble(highestPriceUSDRaw);
+
+            String lowestPriceInputRaw = (String) digitalCurrencyObject4.get("3a. low " + getFromCurrency() + ")");
+            double lowestPriceInput = Double.parseDouble(lowestPriceInputRaw);
+
+            String lowestPriceUSDRaw = (String) digitalCurrencyObject4.get("3b. low (USD)");
+            double lowestPriceUSD = Double.parseDouble(lowestPriceUSDRaw);
+
+            String volumeRaw = (String) digitalCurrencyObject4.get("5. volume");
+            BigDecimal volume = BigDecimal.valueOf(Double.parseDouble(volumeRaw));
+
+            String marketCapUSDRaw = (String) digitalCurrencyObject4.get("6. market cap (USD)");
+            BigDecimal marketCapUSD = BigDecimal.valueOf(Double.parseDouble(marketCapUSDRaw));
+
+            DigitalCurrencyMonthly firstItem =
+                    new DigitalCurrencyMonthly(currencyCode, currencyName, marketCode, marketName, lastRefreshed,
+                            timeZone, checkDate, highestPriceInput, highestPriceUSD, lowestPriceInput, lowestPriceUSD,
+                            volume, marketCapUSD);
+
+
+
+            LocalDate initialDate = checkDate.minusMonths(32);
+
+            DateTimeFormatter format1 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+            List<DigitalCurrencyMonthly> monthlyList = new ArrayList<>();
+            monthlyList.add(firstItem);
+
+            for (LocalDate date = initialDate; date.isBefore(checkDate); date = date.plusMonths(1)) {
+
+                LocalDate lastDay = date.with(lastDayOfMonth());
+                format1.format(lastDay);
+
+                JSONObject digitalCurrencyObject5 = (JSONObject) digitalCurrencyObject3.get(lastDay);
+
+                String highestPriceInputRaw2 = (String) digitalCurrencyObject5.get("2a. high " + getFromCurrency() + ")");
+                double highestPriceInput2 = Double.parseDouble(highestPriceInputRaw);
+
+                String highestPriceUSDRaw2 = (String) digitalCurrencyObject5.get("2b. high (USD)");
+                double highestPriceUSD2 = Double.parseDouble(highestPriceUSDRaw);
+
+                String lowestPriceInputRaw2 = (String) digitalCurrencyObject5.get("3a. low " + getFromCurrency() + ")");
+                double lowestPriceInput2 = Double.parseDouble(lowestPriceInputRaw);
+
+                String lowestPriceUSDRaw2 = (String) digitalCurrencyObject5.get("3b. low (USD)");
+                double lowestPriceUSD2 = Double.parseDouble(lowestPriceUSDRaw);
+
+                String volumeRaw2 = (String) digitalCurrencyObject5.get("5. volume");
+                BigDecimal volume2 = BigDecimal.valueOf(Double.parseDouble(volumeRaw));
+
+                String marketCapUSDRaw2 = (String) digitalCurrencyObject5.get("6. market cap (USD)");
+                BigDecimal marketCapUSD2 = BigDecimal.valueOf(Double.parseDouble(marketCapUSDRaw));
+
+                DigitalCurrencyMonthly digitalCurrencyItem =
+                        new DigitalCurrencyMonthly(currencyCode, currencyName, marketCode, marketName, lastRefreshed,
+                                timeZone, checkDate, highestPriceInput2, highestPriceUSD2, lowestPriceInput2, lowestPriceUSD2,
+                                volume2, marketCapUSD2);
+                monthlyList.add(digitalCurrencyItem);
+
+
+
+            }
+
+
+
 
 
         } catch (UnirestException e) {

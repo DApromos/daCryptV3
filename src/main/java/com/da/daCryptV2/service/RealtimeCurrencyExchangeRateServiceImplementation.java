@@ -35,7 +35,7 @@ public class RealtimeCurrencyExchangeRateServiceImplementation{
     @Transactional
     public List<RealtimeCurrencyExchangeRate> saveExchangeRate() {
 
-        RealtimeCurrencyExchangeRate realtimeCurrencyExchangeRate = new RealtimeCurrencyExchangeRate();
+        RealtimeCurrencyExchangeRate realtimeCurrencyExchangeRate;
         List<RealtimeCurrencyExchangeRate> realtimeCurrencyExchangeRateList = new ArrayList<>();
 
         try {
