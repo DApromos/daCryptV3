@@ -20,7 +20,10 @@
             <button >Submit</button>
             <br>
             <br>
-            <input type="button" value="Add" onclick="window.location.href = 'addNewPare'"/>
+            <input type="button" value="Add new pare" onclick="window.location.href = 'addNewPare'"/>
+            <br>
+            <br>
+            <input type="button" value="Check monthly report " onclick="window.location.href = 'addMonthlyReport'"/>
             <br>
             <br>
             <button onClick="window.location.reload();">Refresh Page</button>
@@ -62,7 +65,42 @@
 </table>
 
 <br>
+<br>
+<br>
 
+<table border="1">
+    <thead>
+    <tr>
+        <th>From Currency</th>
+        <th>To Currency</th>
+        <th>Check date</th>
+        <th>Highest price of the month</th>
+        <th>Highest price of the month (USD)</th>
+        <th>Lowest price of the month</th>
+        <th>Lowest price of the month (USD)</th>
+        <th>Volume</th>
+        <th>Market capitalization (USD)</th>
+    </tr>
+    </thead>
+
+    <c:forEach var="monthlyItem" items="${monthlyReport}">
+
+        <tbody>
+        <tr>
+            <td>${monthlyItem.currencyName}</td>
+            <td>${monthlyItem.marketName}</td>
+            <td>${monthlyItem.checkDate}</td>
+            <td>${monthlyItem.highestPriceInput}</td>
+            <td>${monthlyItem.highestPriceUSD}</td>
+            <td>${monthlyItem.lowestPriceInput}</td>
+            <td>${monthlyItem.lowestPriceUSD}</td>
+            <td>${monthlyItem.volume}</td>
+            <td>${monthlyItem.marketCapUSD}</td>
+        </tr>
+        </tbody>
+    </c:forEach>
+
+</table>
 
 </body>
 </html>
