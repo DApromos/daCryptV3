@@ -28,8 +28,6 @@ import static java.time.temporal.TemporalAdjusters.lastDayOfMonth;
 @Repository
 public class TestClass{
 
-    private SessionFactory sessionFactory;
-
     @Getter
     @Setter
     private static String fromCurrency;
@@ -42,15 +40,6 @@ public class TestClass{
     DigitalCurrencyMonthlyDAOImplementation monthlyDAO;
 
 
-
-    public List<DigitalCurrencyMonthly> monthlyReport() {
-        return null;
-    }
-
-    public void saveSingleItem(DigitalCurrencyMonthly digitalCurrencyMonthly) {
-        Session session = sessionFactory.getCurrentSession();
-        session.save(digitalCurrencyMonthly);
-    }
 
     public static DigitalCurrencyMonthly saveReport() {
 
@@ -153,7 +142,7 @@ public class TestClass{
 
             }
 
-//            monthlyDAO.saveSingleItem(digitalCurrencyMonthly);
+
 
         } catch (UnirestException e) {
             e.printStackTrace();
@@ -169,7 +158,7 @@ public class TestClass{
         TestClass testClass = new TestClass();
         setFromCurrency("EUR");
         setToCurrency("BTC");
-        testClass.saveSingleItem(saveReport());
+        testClass.saveReport();
     }
 
 }
