@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import java.util.List;
 
 @Controller
-public class MainController {
+public class SingleController {
 
     @Autowired
     public TransfExRate transfExRate;
@@ -23,7 +23,6 @@ public class MainController {
     private RealtimeCurrencyExchangeRateServiceImplementation rateServiceImplementation;
 
 
-    private DigitalCurrencyMonthlyServiceImplementation digitalCurrencyMonthlyServiceImplementation;
 
     @RequestMapping("/")
     public String showRealTimeExRate(Model model) {
@@ -44,12 +43,12 @@ public class MainController {
     }
 
 
-    @RequestMapping("/populate")
-    public String populateCurrencies(Model model) {
-        RealtimeCurrencyExchangeRate rate = new RealtimeCurrencyExchangeRate();
-        model.addAttribute("exRate", rate);
-        return "main-page";
-    }
+//    @RequestMapping("/populate")
+//    public String populateCurrencies(Model model) {
+//        RealtimeCurrencyExchangeRate rate = new RealtimeCurrencyExchangeRate();
+//        model.addAttribute("exRate", rate);
+//        return "main-page";
+//    }
 
 
     @RequestMapping(value = "/checkPare", method = RequestMethod.POST)
@@ -61,32 +60,16 @@ public class MainController {
         return "redirect:/";
     }
 
-    @RequestMapping(value = "/checkMonthlyReport", method = RequestMethod.POST)
-    public String monthlyReport(TransfExRate transfExRate) {
-        System.out.println("From currency: " + transfExRate.getFromCurrency());
-        System.out.println("To currency: " + transfExRate.getToCurrency());
-        digitalCurrencyMonthlyServiceImplementation.setFromCurrency(transfExRate.getFromCurrency());
-        digitalCurrencyMonthlyServiceImplementation.setToCurrency(transfExRate.getToCurrency());
-        return "redirect:/";
-    }
+//    @RequestMapping(value = "/checkMonthlyReport", method = RequestMethod.POST)
+//    public String monthlyReport(TransfExRate transfExRate) {
+//        System.out.println("From currency: " + transfExRate.getFromCurrency());
+//        System.out.println("To currency: " + transfExRate.getToCurrency());
+//        digitalCurrencyMonthlyServiceImplementation.setFromCurrency(transfExRate.getFromCurrency());
+//        digitalCurrencyMonthlyServiceImplementation.setToCurrency(transfExRate.getToCurrency());
+//        return "redirect:/";
+//    }
 
 
-    @RequestMapping("/addMonthlyReport")
-    public String saveMonthlyReport(Model model) {
-        List<DigitalCurrencyMonthly> digitalCurrencyMonthlyServiceImplementations =
-                digitalCurrencyMonthlyServiceImplementation.saveReport();
-        model.addAttribute("monthlyReport", digitalCurrencyMonthlyServiceImplementations);
-        return "main-page";
 
-    }
-
-
-    @RequestMapping("/showMonthlyReport")
-    public String showMonthlyReport(Model model) {
-        List<DigitalCurrencyMonthly> digitalCurrencyMonthlyServiceImplementations =
-                digitalCurrencyMonthlyServiceImplementation.monthlyReport();
-        model.addAttribute("monthlyReport", digitalCurrencyMonthlyServiceImplementations);
-        return "main-page";
-    }
 
 }

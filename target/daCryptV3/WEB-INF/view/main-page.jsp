@@ -26,6 +26,9 @@
             <input type="button" value="Check monthly report " onclick="window.location.href = 'addMonthlyReport'"/>
             <br>
             <br>
+            <input type="button" value="Show monthly report " onclick="window.location.href = 'showMonthlyReport'"/>
+            <br>
+            <br>
             <button onClick="window.location.reload();">Refresh Page</button>
             <br>
             <br>
@@ -87,8 +90,12 @@
 
         <tbody>
         <tr>
+            <td>${monthlyItem.currencyCode}</td>
             <td>${monthlyItem.currencyName}</td>
+            <td>${monthlyItem.marketCode}</td>
             <td>${monthlyItem.marketName}</td>
+            <td>${monthlyItem.lastRefreshed}</td>
+            <td>${monthlyItem.timeZone}</td>
             <td>${monthlyItem.checkDate}</td>
             <td>${monthlyItem.highestPriceInput}</td>
             <td>${monthlyItem.highestPriceUSD}</td>

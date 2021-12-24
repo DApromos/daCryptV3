@@ -56,6 +56,13 @@
 
     <tx:annotation-driven transaction-manager="transactionManager" />
 
+    <bean id="realtimeCurrencyExchangeRateDAOImplementation" class="com.da.dao.RealtimeCurrencyExchangeRateDAOImplementation">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="digitalCurrencyMonthlyDAOImplementation" class="com.da.dao.DigitalCurrencyMonthlyDAOImplementation">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
 
 </beans>
 

@@ -8,10 +8,8 @@ import java.time.LocalDate;
 
 
 @Entity
-@Table(name = "digitalcurrenciesmonthly2")
+@Table(name = "CommonMonthlyReport2")
 @ToString
-@NoArgsConstructor
-//@AllArgsConstructor
 public class DigitalCurrencyMonthly {
 
     @Getter
@@ -47,7 +45,7 @@ public class DigitalCurrencyMonthly {
 
     @Getter
     @Setter
-    private LocalDate checkDate;
+    private String checkDate;
 
     @Getter
     @Setter
@@ -67,15 +65,18 @@ public class DigitalCurrencyMonthly {
 
     @Getter
     @Setter
-    private BigDecimal volume;
+    private double volume;
 
     @Getter
     @Setter
-    private BigDecimal marketCapUSD;
+    private double marketCapUSD;
+
+    public DigitalCurrencyMonthly() {
+    }
 
     public DigitalCurrencyMonthly(String currencyCode, String currencyName, String marketCode, String marketName, String lastRefreshed,
-                                  String timeZone, LocalDate checkDate, double highestPriceInput, double highestPriceUSD,
-                                  double lowestPriceInput, double lowestPriceUSD, BigDecimal volume, BigDecimal marketCapUSD) {
+                                  String timeZone, String checkDate, double highestPriceInput, double highestPriceUSD,
+                                  double lowestPriceInput, double lowestPriceUSD, double volume, double marketCapUSD) {
         this.currencyCode = currencyCode;
         this.currencyName = currencyName;
         this.marketCode = marketCode;
