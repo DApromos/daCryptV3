@@ -1,0 +1,20 @@
+CREATE TABLE CommonMonthlyReport2(
+	id integer auto_increment primary key,
+    currencyCode varchar(5),
+    currencyName varchar(25),
+    marketCode varchar(5),
+    marketName varchar(25),
+    lastRefreshed varchar(20),
+    timeZone varchar(5),
+    checkDate varchar(20),
+    highestPriceInput double(15, 8),
+    highestPriceUSD double(15,8),
+    lowestPriceInput double(15,8),
+    lowestPriceUSD double(15,8),
+    volume double(20, 10),
+    marketCapUSD double(20, 10)
+);
+
+SELECT * FROM my_db.digitalcurrenciesmonthly;
+insert into digitalcurrenciesmonthly (id, currencyCode, currencyName, marketCode, marketName, lastRefreshed, timeZone, checkDate, highestPriceInput, highestPriceUSD, lowestPriceInput, lowestPriceUSD, volume, marketCapUSD)
+values (1, 'BTC', 'Bitcoin', 'USD', 'United State Dollar', '2021-12-21 20:19', 'UTC', '2021-12-21', 60000, 60000, 59900, 59900, 1000000000, 6000000000);
