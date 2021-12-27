@@ -25,11 +25,9 @@ public class DigitalCurrencyMonthlyDAOImplementation implements DigitalCurrencyM
         Transaction tx = session.beginTransaction();
 
         List<DigitalCurrencyMonthly> monthlyList =
-                session.createQuery("from CommonMonthlyReport2", DigitalCurrencyMonthly.class)
+                session.createQuery("from DigitalCurrencyMonthly", DigitalCurrencyMonthly.class)
                                 .getResultList();
 
-        session.flush();
-        session.clear();
         tx.commit();
         session.close();
         return monthlyList;

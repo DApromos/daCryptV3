@@ -21,10 +21,11 @@ import java.util.List;
 
 import static java.time.temporal.TemporalAdjusters.lastDayOfMonth;
 
-@Service
+
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
+@Service
 public class DigitalCurrencyMonthlyServiceImplementation implements DigitalCurrencyMonthlyService{
 
     @Getter
@@ -39,19 +40,19 @@ public class DigitalCurrencyMonthlyServiceImplementation implements DigitalCurre
     private DigitalCurrencyMonthlyDAO digitalCurrencyMonthlyDAO;
 
 
-    @Transactional
+//    @Transactional
     public List<DigitalCurrencyMonthly> monthlyReport() {
         return digitalCurrencyMonthlyDAO.getMonthlyReport();
     }
 
-    @Transactional
+//    @Transactional
     public List<DigitalCurrencyMonthly> saveReport() {
 
 //        List<DigitalCurrencyMonthly> digitalCurrencyMonthlyList = new ArrayList<>();
 
         List<DigitalCurrencyMonthly> monthlyList = new ArrayList<>();
 
-        DigitalCurrencyMonthly digitalCurrencyMonthly = new DigitalCurrencyMonthly();
+        DigitalCurrencyMonthly digitalCurrencyMonthly;
 
         try {
 //            Copied from test file
@@ -82,7 +83,7 @@ public class DigitalCurrencyMonthlyServiceImplementation implements DigitalCurre
 
             String checkDate = LocalDate.now().toString();
 
-            JSONObject digitalCurrencyObject4 = (JSONObject) digitalCurrencyObject3.get(checkDate.toString());
+            JSONObject digitalCurrencyObject4 = (JSONObject) digitalCurrencyObject3.get(checkDate);
 
             String highestPriceInputRaw = (String) digitalCurrencyObject4.get("2a. high (EUR)");
             double highestPriceInput = Double.parseDouble(highestPriceInputRaw);
@@ -90,24 +91,30 @@ public class DigitalCurrencyMonthlyServiceImplementation implements DigitalCurre
             String highestPriceUSDRaw = (String) digitalCurrencyObject4.get("2b. high (USD)");
             double highestPriceUSD = Double.parseDouble(highestPriceUSDRaw);
 
-            String lowestPriceInputRaw = (String) digitalCurrencyObject4.get("3a. low (BTC)");
+            String lowestPriceInputRaw = (String) digitalCurrencyObject4.get("3a. low (EUR)");
             double lowestPriceInput = Double.parseDouble(lowestPriceInputRaw);
 
             String lowestPriceUSDRaw = (String) digitalCurrencyObject4.get("3b. low (USD)");
             double lowestPriceUSD = Double.parseDouble(lowestPriceUSDRaw);
 
-            BigDecimal volume = new BigDecimal((String) digitalCurrencyObject4.get("5. volume"));
+            String volumeRaw = (String) digitalCurrencyObject4.get("5. volume");
+            double volume = Double.parseDouble(volumeRaw);
 
-            BigDecimal marketCapUSD = new BigDecimal((String)digitalCurrencyObject4.get("6. market cap (USD)"));
+            String marketCapUSDRaw = (String) digitalCurrencyObject4.get("6. market cap (USD)");
+            double marketCapUSD = Double.parseDouble(marketCapUSDRaw);
 
 
-//            digitalCurrencyMonthly =
-//                    new DigitalCurrencyMonthly(currencyCode, currencyName, marketCode, marketName, lastRefreshed,
-//                            timeZone, checkDate, highestPriceInput, highestPriceUSD, lowestPriceInput, lowestPriceUSD,
-//                            volume, marketCapUSD);
+//            BigDecimal volume = new BigDecimal((String) digitalCurrencyObject4.get("5. volume"));
+//
+//            BigDecimal marketCapUSD = new BigDecimal((String)digitalCurrencyObject4.get("6. market cap (USD)"));
+
+
+            digitalCurrencyMonthly =
+                    new DigitalCurrencyMonthly(currencyCode, currencyName, marketCode, marketName, lastRefreshed,
+                            timeZone, checkDate, highestPriceInput, highestPriceUSD, lowestPriceInput, lowestPriceUSD,
+                            volume, marketCapUSD);
 
             System.out.println(digitalCurrencyMonthly);
-
 
 
 
@@ -215,7 +222,7 @@ public class DigitalCurrencyMonthlyServiceImplementation implements DigitalCurre
 //            digitalCurrencyMonthlyDAO.saveMonthlyReport(digitalCurrencyMonthlyList);
 
 
-            digitalCurrencyMonthlyDAO.saveSingleItem(digitalCurrencyMonthly);
+//            digitalCurrencyMonthlyDAO.saveSingleItem(digitalCurrencyMonthly);
 
         } catch (UnirestException e) {
             e.printStackTrace();

@@ -74,8 +74,12 @@
 <table border="1">
     <thead>
     <tr>
-        <th>From Currency</th>
-        <th>To Currency</th>
+        <th>From Currency (code)</th>
+        <th>From Currency (name)</th>
+        <th>To Currency (code)</th>
+        <th>To Currency (name)</th>
+        <th>Last refreshed</th>
+        <th>Time Zone</th>
         <th>Check date</th>
         <th>Highest price of the month</th>
         <th>Highest price of the month (USD)</th>

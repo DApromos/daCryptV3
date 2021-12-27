@@ -1,9 +1,7 @@
 package com.da.controller;
 
-import com.da.entity.DigitalCurrencyMonthly;
 import com.da.entity.RealtimeCurrencyExchangeRate;
 import com.da.entity.TransfExRate;
-import com.da.service.DigitalCurrencyMonthlyServiceImplementation;
 import com.da.service.RealtimeCurrencyExchangeRateServiceImplementation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,7 +19,6 @@ public class SingleController {
 
     @Autowired
     private RealtimeCurrencyExchangeRateServiceImplementation rateServiceImplementation;
-
 
 
     @RequestMapping("/")

@@ -23,6 +23,7 @@ public class RealtimeCurrencyExchangeRateDAOImplementation implements RealtimeCu
 
         Session session = sessionFactory.openSession();
         Transaction tx = session.beginTransaction();
+
         List<RealtimeCurrencyExchangeRate> realtimeCurrencyExchangeRates =
                 session.createQuery("from RealtimeCurrencyExchangeRate", RealtimeCurrencyExchangeRate.class)
                         .getResultList();

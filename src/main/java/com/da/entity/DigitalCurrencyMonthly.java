@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-
+@AllArgsConstructor
 @Entity
 @Table(name = "CommonMonthlyReport2")
 @ToString
