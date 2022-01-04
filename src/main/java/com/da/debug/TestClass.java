@@ -1,6 +1,5 @@
-package com.da.service;
+package com.da.debug;
 
-import com.da.dao.DigitalCurrencyMonthlyDAO;
 import com.da.dao.DigitalCurrencyMonthlyDAOImplementation;
 import com.da.entity.DigitalCurrencyMonthly;
 import com.mashape.unirest.http.HttpResponse;
@@ -9,7 +8,6 @@ import com.mashape.unirest.http.exceptions.UnirestException;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.hibernate.*;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -20,8 +18,6 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
-import static java.time.temporal.TemporalAdjusters.lastDayOfMonth;
 
 @ToString
 @Repository

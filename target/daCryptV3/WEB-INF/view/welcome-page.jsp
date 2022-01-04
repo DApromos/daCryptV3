@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html>
 <body>
-<h1>Real Time Exchange Rate</h1>
+<h1 id="anchor">DAcrypt App - Welcome page</h1>
 <form id="checkPare" action="checkPare" method="post">
-    <h3>Please input first and second currencies</h3>
+    <h3>Please fill currencies you would like to check</h3>
     <label> From Currency: </label>
     <br>
     <input type="text" name="ToCurrency">
@@ -18,45 +18,29 @@
     <table>
         <tr>
             <button >Submit</button>
-            <br>
-            <br>
-            <input type="button" value="Add new pare" onclick="window.location.href = 'addNewPare'"/>
-            <br>
-            <br>
-
-            <br>
-            <br>
-            <input type="button" value="Show monthly report " onclick="window.location.href = 'showMonthlyReport'"/>
-            <br>
-            <br>
-            <button onClick="window.location.reload();">Refresh Page</button>
-            <br>
-            <br>
         </tr>
     </table>
 </form>
 <br>
 <br>
-<form id="checkMonth" action="/checkMonth" method="post">
-    <h3>Please input first and second currencies</h3>
-    <label> From currency: </label>
-    <br>
-    <input type="text" name="ToCurrency">
-    <br>
-    <label> To currency: </label>
-    <br>
-    <input type="text" name="FromCurrency">
-    <br>
-    <br>
-    <button >Submit</button>
-    <br>
-    <br>
-    <input type="button" value="Check monthly report " onclick="window.location.href = 'addMonthlyReport'"/>
-    <br>
-</form>
+<input type="button" value="Check daily exchange rate" onclick="window.location.href = 'addNewPare'"/>
+<br>
+<br>
+<input type="button" value="Check monthly report " onclick="window.location.href = 'addMonthlyReport'"/>
+<br>
+<br>
+<input type="button" value="Show daily exchange rate " onclick="window.location.href = 'showDailyReport'"/>
+<br>
+<br>
+<input type="button" value="Show monthly report " onclick="window.location.href = 'showMonthlyReport'"/>
+<br>
+<br>
+<button onClick="window.location.reload();">Refresh Page</button>
 <br>
 <br>
 <br>
+<br>
+
 <table border="1">
     <thead>
     <tr>
@@ -81,6 +65,7 @@
             <td>${currencyPare.askPrice}</td>
         </tr>
         </tbody>
+
     </c:forEach>
 
 </table>

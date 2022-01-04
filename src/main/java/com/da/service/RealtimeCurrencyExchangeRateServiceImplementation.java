@@ -5,6 +5,7 @@ import com.da.entity.RealtimeCurrencyExchangeRate;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
+import lombok.*;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -15,10 +16,18 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
 @Service
-public class RealtimeCurrencyExchangeRateServiceImplementation{
+public class RealtimeCurrencyExchangeRateServiceImplementation implements RealtimeCurrencyExchangeRateService{
 
+    @Getter
+    @Setter
     private static String fromCurrency;
+
+    @Getter
+    @Setter
     private static String toCurrency;
 
 
@@ -26,13 +35,11 @@ public class RealtimeCurrencyExchangeRateServiceImplementation{
     private RealtimeCurrencyExchangeRateDAO realtimeCurrencyExchangeRateDAO;
 
 
-    @Transactional
     public List<RealtimeCurrencyExchangeRate> getRealtimeCurrencyExchangeRate() {
         return realtimeCurrencyExchangeRateDAO.getRealtimeCurrencyExchangeRate();
     }
 
 
-    @Transactional
     public List<RealtimeCurrencyExchangeRate> saveExchangeRate() {
 
         RealtimeCurrencyExchangeRate realtimeCurrencyExchangeRate;
@@ -87,24 +94,6 @@ public class RealtimeCurrencyExchangeRateServiceImplementation{
 
     }
 
-    public String getFromCurrency() {
-        return fromCurrency;
-    }
-
-    public void setFromCurrency(String FromCurrency) {
-        this.fromCurrency = FromCurrency;
-    }
-
-    public String getToCurrency() {
-        return toCurrency;
-    }
-
-    public void setToCurrency(String toCurrency) {
-        this.toCurrency = toCurrency;
-    }
-
-    public RealtimeCurrencyExchangeRateServiceImplementation() {
-    }
 
     public RealtimeCurrencyExchangeRateServiceImplementation(String fromCurrency, String toCurrency) {
         this.fromCurrency = fromCurrency;

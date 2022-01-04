@@ -2,7 +2,6 @@ package com.da.controller;
 
 import com.da.entity.DigitalCurrencyMonthly;
 import com.da.entity.RealtimeCurrencyExchangeRate;
-import com.da.entity.TransExRateCommon;
 import com.da.entity.TransfExRate;
 import com.da.service.DigitalCurrencyMonthlyServiceImplementation;
 import com.da.service.RealtimeCurrencyExchangeRateServiceImplementation;
@@ -15,27 +14,37 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import java.util.List;
 
 @Controller
-public class SingleController {
+public class MainController {
 
-    //////////////////////////////
+    //Adding dependencies for both monthly and single reports
     @Autowired
     private DigitalCurrencyMonthlyServiceImplementation digitalCurrencyMonthlyServiceImplementation;
-    /////////////////////////////
-
-
-    @Autowired
-    public TransfExRate transfExRate;
 
     @Autowired
     private RealtimeCurrencyExchangeRateServiceImplementation rateServiceImplementation;
 
+    //Intermediary object for getting input (currencies) from view
+    @Autowired
+    public TransfExRate transfExRate;
 
-    @RequestMapping("/")
+    //Reading currencies from view and set them for both instances (daily and monthly)
+    @RequestMapping(value = "/checkPare", method = RequestMethod.POST)
+    public String checkPare(TransfExRate transfExRate) {
+        System.out.println("From currency: " + transfExRate.getFromCurrency());
+        System.out.println("To currency: " + transfExRate.getToCurrency());
+        rateServiceImplementation.setFromCurrency(transfExRate.getFromCurrency());
+        rateServiceImplementation.setToCurrency(transfExRate.getToCurrency());
+        digitalCurrencyMonthlyServiceImplementation.setFromCurrency(transfExRate.getFromCurrency());
+        digitalCurrencyMonthlyServiceImplementation.setToCurrency(transfExRate.getToCurrency());
+        return "redirect:/";
+    }
+
+    @RequestMapping("/showDailyReport")
     public String showRealTimeExRate(Model model) {
         List<RealtimeCurrencyExchangeRate> realtimeCurrencyExchangeRates =
                 rateServiceImplementation.getRealtimeCurrencyExchangeRate();
         model.addAttribute("realTimeExRates", realtimeCurrencyExchangeRates);
-        return "main-page";
+        return "daily-report-list";
     }
 
 
@@ -44,32 +53,9 @@ public class SingleController {
         List<RealtimeCurrencyExchangeRate> realtimeCurrencyExchangeRate =
                 rateServiceImplementation.saveExchangeRate();
         model.addAttribute("realTimeExRates", realtimeCurrencyExchangeRate);
-        return "main-page";
+        return "welcome-page";
 
     }
-
-
-//    @RequestMapping("/populate")
-//    public String populateCurrencies(Model model) {
-//        RealtimeCurrencyExchangeRate rate = new RealtimeCurrencyExchangeRate();
-//        model.addAttribute("exRate", rate);
-//        return "main-page";
-//    }
-
-
-    @RequestMapping(value = "/checkPare", method = RequestMethod.POST)
-    public String checkPare(TransfExRate transfExRate) {
-        System.out.println("From currency: " + transfExRate.getFromCurrency());
-        System.out.println("To currency: " + transfExRate.getToCurrency());
-        rateServiceImplementation.setFromCurrency(transfExRate.getFromCurrency());
-        rateServiceImplementation.setToCurrency(transfExRate.getToCurrency());
-        /////////////////////////
-        digitalCurrencyMonthlyServiceImplementation.setFromCurrency(transfExRate.getFromCurrency());
-        digitalCurrencyMonthlyServiceImplementation.setToCurrency(transfExRate.getToCurrency());
-        ////////////////////////
-        return "redirect:/";
-    }
-
 
 
     @RequestMapping("/addMonthlyReport")
@@ -77,7 +63,7 @@ public class SingleController {
         List<DigitalCurrencyMonthly> digitalCurrencyMonthly =
                 digitalCurrencyMonthlyServiceImplementation.saveReport();
         model.addAttribute("monthlyReport", digitalCurrencyMonthly);
-        return "main-page";
+        return "welcome-page";
 
     }
 
@@ -86,7 +72,12 @@ public class SingleController {
         List<DigitalCurrencyMonthly> digitalCurrencyMonthlyServiceImplementations =
                 digitalCurrencyMonthlyServiceImplementation.monthlyReport();
         model.addAttribute("monthlyReport", digitalCurrencyMonthlyServiceImplementations);
-        return "main-page";
+        return "monthly-report-list";
+    }
+
+    @RequestMapping("/")
+    public String welcomePage(){
+        return "welcome-page";
     }
 
 

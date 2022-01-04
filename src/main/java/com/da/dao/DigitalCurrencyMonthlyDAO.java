@@ -10,6 +10,4 @@ public interface DigitalCurrencyMonthlyDAO {
 
     public void saveMonthlyReport(List<DigitalCurrencyMonthly> monthlyReport);
 
-    public void saveSingleItem(DigitalCurrencyMonthly digitalCurrencyMonthly);
-
 }

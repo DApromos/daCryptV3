@@ -1,4 +1,4 @@
-package com.da.service;
+package com.da.debug;
 
 import com.da.dao.RealtimeCurrencyExchangeRateDAO;
 import com.da.entity.RealtimeCurrencyExchangeRate;

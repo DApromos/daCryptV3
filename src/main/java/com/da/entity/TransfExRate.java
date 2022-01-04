@@ -1,27 +1,19 @@
 package com.da.entity;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.stereotype.Component;
 
-
+//Special entity for transferring currencies from the view
 @Component
 public class TransfExRate {
 
+    @Getter
+    @Setter
     public String fromCurrency;
+
+    @Getter
+    @Setter
     public  String toCurrency;
 
-    public String getFromCurrency() {
-        return fromCurrency;
-    }
-
-    public void setFromCurrency(String fromCurrency) {
-        this.fromCurrency = fromCurrency;
-    }
-
-    public String getToCurrency() {
-        return toCurrency;
-    }
-
-    public void setToCurrency(String toCurrency) {
-        this.toCurrency = toCurrency;
-    }
 }

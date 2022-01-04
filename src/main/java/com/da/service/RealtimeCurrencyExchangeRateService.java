@@ -8,7 +8,7 @@ public interface RealtimeCurrencyExchangeRateService {
 
     List<RealtimeCurrencyExchangeRate> getRealtimeCurrencyExchangeRate();
 
-    RealtimeCurrencyExchangeRate saveExchangeRate();
+    List<RealtimeCurrencyExchangeRate> saveExchangeRate();
 
 
 

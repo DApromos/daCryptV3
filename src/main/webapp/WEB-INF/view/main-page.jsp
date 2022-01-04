@@ -6,11 +6,11 @@
 <h1>Real Time Exchange Rate</h1>
 <form id="checkPare" action="checkPare" method="post">
     <h3>Please input first and second currencies</h3>
-    <label> From Currency (Crypto): </label>
+    <label> From Currency: </label>
     <br>
     <input type="text" name="ToCurrency">
     <br>
-    <label> To currency: </label>
+    <label> To currency  (Crypto): </label>
     <br>
     <input type="text" name="FromCurrency">
     <br>
