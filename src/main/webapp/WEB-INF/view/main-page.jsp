@@ -6,7 +6,7 @@
 <h1>Real Time Exchange Rate</h1>
 <form id="checkPare" action="checkPare" method="post">
     <h3>Please input first and second currencies</h3>
-    <label> From currency: </label>
+    <label> From Currency (Crypto): </label>
     <br>
     <input type="text" name="ToCurrency">
     <br>
@@ -23,7 +23,7 @@
             <input type="button" value="Add new pare" onclick="window.location.href = 'addNewPare'"/>
             <br>
             <br>
-            <input type="button" value="Check monthly report " onclick="window.location.href = 'addMonthlyReport'"/>
+
             <br>
             <br>
             <input type="button" value="Show monthly report " onclick="window.location.href = 'showMonthlyReport'"/>
@@ -32,9 +32,27 @@
             <button onClick="window.location.reload();">Refresh Page</button>
             <br>
             <br>
-
         </tr>
     </table>
+</form>
+<br>
+<br>
+<form id="checkMonth" action="/checkMonth" method="post">
+    <h3>Please input first and second currencies</h3>
+    <label> From currency: </label>
+    <br>
+    <input type="text" name="ToCurrency">
+    <br>
+    <label> To currency: </label>
+    <br>
+    <input type="text" name="FromCurrency">
+    <br>
+    <br>
+    <button >Submit</button>
+    <br>
+    <br>
+    <input type="button" value="Check monthly report " onclick="window.location.href = 'addMonthlyReport'"/>
+    <br>
 </form>
 <br>
 <br>

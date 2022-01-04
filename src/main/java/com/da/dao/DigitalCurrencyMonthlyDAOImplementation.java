@@ -55,8 +55,6 @@ public class DigitalCurrencyMonthlyDAOImplementation implements DigitalCurrencyM
             session.save(item);
         }
 
-        session.flush();
-        session.clear();
         tx.commit();
         session.close();
 
